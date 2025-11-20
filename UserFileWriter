@@ -1,0 +1,16 @@
+package MovieEntities;
+	import java.io.BufferedWriter;
+	import java.io.FileWriter;
+
+	public class UserFileWriter {
+
+	    public static void saveUser(User u) {
+	        try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true))) {
+	            bw.write(u.toString());
+	            bw.newLine();   
+	        } catch (Exception e) {
+	            System.out.println("Error writing user: " + e);
+	        }
+	    }
+	}
+
