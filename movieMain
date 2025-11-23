@@ -1,0 +1,128 @@
+package MovieEntities;
+import java.util.*;
+
+public class movieMain {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<movie> movieList = new ArrayList<>();
+
+        while(true) {
+
+            System.out.println("----MOVIES ----");
+            System.out.println("1. Add Movie");
+            System.out.println("2. Display Movies");
+            System.out.println("3. Update Movie");
+            System.out.println("4. Remove Movie");
+            System.out.println("5. Exit");
+            System.out.println("Enter your choice:");
+
+            int ch = sc.nextInt();
+            sc.nextLine();   
+
+            switch(ch) {
+
+         
+            case 1:
+                System.out.println("Enter Movie ID:");
+                int id = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Enter Movie Name:");
+                String name = sc.nextLine();
+
+                System.out.println("Enter Genre:");
+                String genre = sc.nextLine();
+
+                System.out.println("Enter Duration (minutes):");
+                int duration = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Enter Language:");
+                String lang = sc.nextLine();
+
+                System.out.println("Enter Status (running/upcoming):");
+                String status = sc.nextLine();
+
+                movie mv = new movie(id, name, genre, duration, lang, status);
+                movieList.add(mv);
+
+                System.out.println("Movie Added Successfully!");
+                break;
+
+           
+            case 2:
+                if(movieList.isEmpty()) {
+                    System.out.println("No movies available.");
+                } else {
+                    System.out.println("----- Movie List -----");
+                    for(movie m : movieList) {
+                        System.out.println(m);
+                    }
+                }
+                break;
+
+            case 3:
+                System.out.println("Enter Movie ID to update:");
+                int uid = sc.nextInt();
+                sc.nextLine();
+
+                boolean found = false;
+
+                for(movie m : movieList) {
+                    if(m.getMovieId() == uid) {
+                        found = true;
+
+                        System.out.println("Enter New Movie Name:");
+                        m.setMovieName(sc.nextLine());
+
+                        System.out.println("Enter New Genre:");
+                        m.setGenre(sc.nextLine());
+
+                        System.out.println("Enter New Duration:");
+                        m.setDuration(sc.nextInt());
+                        sc.nextLine();
+
+                        System.out.println("Enter New Language:");
+                        m.setLanguage(sc.nextLine());
+
+                        System.out.println("Enter New Status:");
+                        m.setStatus(sc.nextLine());
+
+                        System.out.println("Movie Updated Successfully!");
+                        break;
+                    }
+                }
+
+                if(!found)
+                    System.out.println("Movie Not Found!");
+                break;
+
+           
+            case 4:
+                System.out.println("Enter Movie ID to remove:");
+                int rid = sc.nextInt();
+                sc.nextLine();
+
+                boolean removed = movieList.removeIf(m -> m.getMovieId() == rid);
+
+                if(removed)
+                    System.out.println("Movie Removed Successfully!");
+                else
+                    System.out.println("Movie Not Found!");
+                break;
+
+         
+            case 5:
+                System.out.println("Exiting Movie Management...");
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+            }
+        }
+    }
+}
+
