@@ -15,6 +15,18 @@ public class Owner {
     void displayMenu() {
         menu.forEach((k, v) ->
                 System.out.println("Item: " + k + "   Price: " + v)
-        );
+                );
     }
+        public void addItem(String name, int price) {
+            menu.put(name, price);
+            System.out.println(" " + name + " added to menu!");
+    }
+        public void removeItem(String name) {
+            if (menu.containsKey(name.toLowerCase())) {
+                menu.remove(name.toLowerCase());
+                System.out.println(" " + name + " removed from menu!");
+            } else {
+                System.out.println(" Item not found!");
+            }
+        }
 }
